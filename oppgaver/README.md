@@ -126,7 +126,7 @@ _Når en `POST`-forespørsel sendes til `/recognize_ingredients`, skal bildet so
 ["paprika", "onion", "fish oil"]
 ```
 
-Når oppgaven er fullført, skal det være mulig å kjøre kommandoen `flask run` i backend-terminalen uten at det gir feilmelding. Husk å kjør kommandoen i `cd oppgaver/backend`
+Når oppgaven er fullført, skal det være mulig å kjøre kommandoen `flask run` i backend-terminalen uten at det gir feilmelding. Husk å kjør kommandoen i `oppgaver/backend`. Du kan bytte folder med `cd`
 
 ### 1.4 Frontend – Fetch-kall
 
@@ -136,31 +136,31 @@ _I denne oppgaven skal du gjøre et fetch-kall i UploadImageButton.tsx. Komponen
 
 1.  **Naviger**:
 
-    Naviger til `cd Buttons/UploadImageButton.tsx`
+    Naviger til `Buttons/UploadImageButton.tsx`
 
 2.  **Last opp et bilde av kjøleskapet**:
 
-    Last opp et bilde av et kjøleskap med ingredienser. Hvis du ikke har et slikt bilde, kan du også bruke et bilde fra internett.
+    Last opp et bilde av et kjøleskap med ingredienser. Hvis du ikke har et slikt bilde, kan du også bruke et bilde fra internett. Du vil bli tatt videre til der oppgaven fortsetter.
 
-3.  **Opprett en knapp**:
+4.  **Opprett en knapp**:
 
     Opprett en knapp med teksten "Send" og tilordne den CSS-klassen className={styles.buttons}.
 
-4.  **Håndter knappens funksjonalitet**:
+5.  **Håndter knappens funksjonalitet**:
 
     Når brukeren klikker på knappen, skal bildet som er valgt lastes opp til API-et.  
      _Hint: Bruk `onClick`._
 
-5.  **Sjekk om en fil er valgt**:
+6.  **Sjekk om en fil er valgt**:
 
     Hvis ingen fil er valgt, logg meldingen "ingen fil er valgt" og returner en tom liste.
 
-6.  **Lag API-kall**:  
+7.  **Lag API-kall**:  
      Bruk et POST-kall til følgende URL:  
      `http://127.0.0.1:5000/recognize_ingredients`.  
      Bildet skal sendes som `formData`.
 
-7.  **Konverter responsen til JSON-format**:
+8.  **Konverter responsen til JSON-format**:
     Konverter responsen fra serveren til å være JSON-format
 
 Når du har fullført oppgaven, skal det være mulig å klikke på knappen, og de identifiserte ingrediensene vil bli vist.
@@ -180,7 +180,7 @@ _I IngredientTagsContainer.tsx finnes det en funskjon `generateRecipe`, som skal
 Fullfør implementasjonen av `generateRecipe`. Den tar imot en liste av tags (`tags: string[]`), og skal sende disse til `/generate_recipe` endpointet.
 
 1. **Naviger**
-   Naviger til `cd IngredientsTagsContainer/IngredientTagsContainer.tsx`
+   Naviger til `IngredientsTagsContainer/IngredientTagsContainer.tsx`
 2. **Lag API-kall**
 
    Bruk et POST-kall til følgende URL:
@@ -206,7 +206,7 @@ I denne oppgaven skal du endre klassen `RecipeGenerator` slik at den kan generer
 
 1. **Naviger**
 
-   Naviger til `cd recipe_generator.py`
+   Naviger til `recipe_generator.py`
 
 2. **Ta imot en liste med ingredienser som input**
 
@@ -249,7 +249,7 @@ frontend, og bruk denne til å sende med `user_id` i `generate_recipe` requesten
 
 ### 3.2 Hent ut oppskrifter – get_recipes
 
-_Om Forrige steg er gjort riktig, skal oppskriftene dine ligge i Azure Table Service, og det er nå mulig å skrive en funskjon for å hente ut alle oppskrifter
+_Om forrige steg er gjort riktig, skal oppskriftene dine ligge i Azure Table Service, og det er nå mulig å skrive en funskjon for å hente ut alle oppskrifter
 som tilhører deg, og vise disse i frontend._
 
 ### Oppgave
