@@ -52,7 +52,7 @@ def recognize_ingredients():
         # TODO 1.3.3: Find out which class and method from Azure Custom Vision to use
         ingredients = "TODO"
         if ingredients:
-        # TODO 1.3.4: Return a JSON response containing the recognized ingredients
+        # TODO 1.3.4: Return a JSON array containing the recognized ingredients
             return "todo", 200
         else:
             return jsonify({"error": "No ingredients found in the image"}), 200
