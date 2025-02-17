@@ -47,7 +47,7 @@ export default function UploadImageButton({
 
       const data = await //TODO ;
       console.log("uploadImage Response:", data);
-      return data.ingredients;
+      return data;
     } catch (error) {
       console.error("Error during upload:", error);
       return undefined;

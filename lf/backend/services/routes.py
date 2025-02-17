@@ -56,7 +56,7 @@ def recognize_ingredients():
         file_stream = BytesIO(file.read())
         ingredients = ocr.recognize_ingredients(file_stream)
         if ingredients:
-            return jsonify({"ingredients": ingredients}), 200
+            return jsonify(ingredients), 200
         else:
             return jsonify({"error": "No ingredients found in the image"}), 200
     except Exception as e:
