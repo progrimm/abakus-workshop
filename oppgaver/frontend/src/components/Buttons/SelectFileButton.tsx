@@ -29,7 +29,7 @@ export function SelectFileButton({ onFileChange }: props) {
         ref={hiddenFileInput}
         onChange={handleChange}
         style={{ display: "none" }}
-        /* TODO: accept only image files*/
+        accept="image/png, image/jpeg, image/jpg"
       />
     </>
   );

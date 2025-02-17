@@ -17,6 +17,10 @@ export default function UploadImageButton({
      * Check if a file is selected
      * If no file is selected, log "No file selected" and return an empty list
      */
+    if (!file) {
+      console.log("Ingen fil er valgt");
+      return [];
+    }
     try {
       const formData = new FormData();
       formData.append("image", file);
@@ -27,9 +31,9 @@ export default function UploadImageButton({
        * Pass the FormData object as the body of the request
        */
 
-      const response = await fetch("TODO", {
-        method: "TODO",
-        body: "TODO",
+      const response = await fetch("http://127.0.0.1:5000/recognize_ingredients", {
+        method: "POST",
+        body: formData,
       });
       if (!response.ok) {
         const errorJson = await response.json();
@@ -45,7 +49,7 @@ export default function UploadImageButton({
        * Convert the server response to JSON format
        */
 
-      const data = await //TODO ;
+      const data = await response.json(); ;
       console.log("uploadImage Response:", data);
       return data;
     } catch (error) {
@@ -69,5 +73,5 @@ export default function UploadImageButton({
     }
   };
 
-  return <div>/* TODO 1.4.3 and 1.4.4 Add an button with onClick event */</div>;
+  return <div><button onClick={handleClick} className={styles.buttons}>Send</button>/</div>;
 }

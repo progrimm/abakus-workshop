@@ -29,7 +29,7 @@ def generate_recipe():
     if 'tags' not in data or not isinstance(data['tags'], list):
         return jsonify({"error": "Missing or invalid 'tags' field "}), 400
 
-    result = recipe_gen.generate_recipe()
+    result = recipe_gen.generate_recipe(data['tags'])
 
     if result:
         return jsonify(result)
@@ -37,7 +37,7 @@ def generate_recipe():
         return jsonify({'error': 'Failed to generate recipe'}), 404
 
 # TODO 1.3.2: Define the correct route URL and HTTP method (POST)
-@routes.route('TODO', methods=['TODO'])
+@routes.route('/recognize_ingredients', methods=['POST'])
 def recognize_ingredients():
     if 'image' not in request.files:
         return jsonify({"error": "No image file found in request"}), 400
@@ -50,10 +50,10 @@ def recognize_ingredients():
     try:
         file_stream = BytesIO(file.read())
         # TODO 1.3.3: Find out which class and method from Azure Custom Vision to use
-        ingredients = "TODO"
+        ingredients = ocr.recognize_ingredients(image=file_stream)
         if ingredients:
         # TODO 1.3.4: Return a JSON array containing the recognized ingredients
-            return "todo", 200
+            return jsonify(ingredients), 200
         else:
             return jsonify({"error": "No ingredients found in the image"}), 200
     except Exception as e:

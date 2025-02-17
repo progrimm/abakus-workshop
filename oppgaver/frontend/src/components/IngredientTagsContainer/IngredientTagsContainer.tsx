@@ -14,10 +14,10 @@ interface IngredientTagsContainerProps {
 }
 
 export default function IngredientTagsContainer({
-                                                  onDone,
-                                                  setLoading,
-                                                  aiTags
-                                                }: IngredientTagsContainerProps) {
+  onDone,
+  setLoading,
+  aiTags
+}: IngredientTagsContainerProps) {
   const [tags, setTags] = useState<TagProps[]>([]);
   const [newTag, setNewTag] = useState("");
 
@@ -49,15 +49,24 @@ export default function IngredientTagsContainer({
 
   const generateRecipe = async (tags: string[]) => {
     setLoading();
-  
-    try {
-       /*
-     * TODO oppgave 2.1.2
-     *  call generate_recipe endpoint
-     */
 
-    } catch(error) {
-      console.error("Error sending tags to backend:", error);
+    try {
+      const response = await fetch("http://localhost:5000/generate_recipe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ tags})
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        onDone(data as Recipe);
+      }
+      else {
+        onDone(undefined);
+      }
+    }
+    catch (error) {
+      console.error("Error:", error);
       onDone(undefined);
     }
   };

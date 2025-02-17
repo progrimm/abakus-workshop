@@ -6,12 +6,15 @@ from clients.llm_client import LangueModelClient
 from model.recipe import Recipe
 import uuid
 
+igc = ImageGeneratorClient()
+llm = LangueModelClient()
+
 
 def recipe_prompt(ingredients: list[str]):
     return f"""
-You are a bad chef.
+You are a really good chef.
 Please create some sort of recipe based on the following ingredients.
-Don't bother being clever or precise—just wing it.
+Be clever and precise.
 The following ingredient(s) is all that i have in my fridge: {", ".join(ingredients)}.
 
 Requirements:
@@ -22,8 +25,8 @@ Requirements:
 
 def image_prompt(recipe: str):
     return f"""
-        Just slap together some low-effort, boring photo of the dish described in this recipe.
-        Seriously, don't try too hard. No fancy plating or lighting—make it dull.
+        Slap together some high-effort, sexy photo of the dish described in this recipe.
+        Seriously, try hard. Fancy plating and lighting—make it really cool.
 
         RECIPE:
         {recipe}
@@ -36,26 +39,19 @@ class RecipeGenerator:
     llm_client: LangueModelClient
     image_generation_client: ImageGeneratorClient
 
-    def generate_recipe(self):
+    def generate_recipe(self, ingredients: list[str]):
         # TODO oppgave 2.2 - call azure and return real data
+
+        recipe = llm.generate_text(recipe_prompt(ingredients))
+        image = igc.generate_image(image_prompt(recipe))
 
         unique_id = str(uuid.uuid4())
 
-        recipe = Recipe(
+        recipe_total = Recipe(
             unique_id,
-            f"""
-                Havregrøt
-
-                Ingredienser:
-
-                1 dl havregryn
-                2 dl melk/vann
-
-                Fremgangsmåte:
-                Kok opp, rør i 3-5 min.
-            """,
-            "https://placehold.co/600x400",
-            ["havregryn, melk"]
+            recipe,
+            image,
+            ingredients
         )
 
-        return recipe
+        return recipe_total

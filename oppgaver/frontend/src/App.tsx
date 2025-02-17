@@ -7,6 +7,7 @@ import Recipe from "./model/Recipe.tsx";
 import { RecipeListPage } from "./pages/recipes/RecipeListPage.tsx";
 import Navbar from "./components/Navbar/Navbar.tsx";
 import { RecipePage } from "./pages/recipe/RecipePage.tsx";
+import { ImageUploadPage } from "./pages/ImageUpload/ImageUploadPage.tsx";
 
 function App() {
   const [recipeList, setRecipes] = useState<Recipe[]>([]);
@@ -24,6 +25,7 @@ function App() {
               /*TODO: Add route for ImageUploadPage*/
               <Route path="/recipes" element={<RecipeListPage />} />
               <Route path="/recipes/:id" element={<RecipePage />} />
+              <Route path="/" element={<ImageUploadPage />} />
             </Routes>
           </div>
         </Router>
